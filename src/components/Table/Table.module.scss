@@ -1,0 +1,54 @@
+.tableContainer {
+  border-radius: 20px;
+  width: 800px;
+}
+
+.header,
+button {
+  background-color: rgb(9, 104, 181);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.header {
+  font-size: 24px;
+  border-radius: 20px 20px 0 0;
+}
+
+.table {
+  width: 100%;
+}
+
+.row,
+.tableTitle {
+  color: #2b686e;
+  padding: 10px;
+}
+
+.cell {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.row {
+  background-color: #edf7f8;
+}
+
+.tableTitle {
+  background-color: #daeff1;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  border-radius: 0 0 20px 20px;
+
+  &:hover {
+    background-color: rgb(22, 52, 55);
+    transition: background-color 0.5s ease-in-out;
+  }
+}
