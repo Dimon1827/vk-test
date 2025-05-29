@@ -1,9 +1,12 @@
-import React from 'react';
 import styles from './Form.module.scss';
-import users from '../../data/users';
 import columns from '../../data/columns';
 
-const Form = ({ isOpen, onClose }) => {
+interface IPropsForm {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const Form = ({ isOpen, onClose }: IPropsForm) => {
   if (!isOpen) return null;
   return (
     <form className={styles.form}>
