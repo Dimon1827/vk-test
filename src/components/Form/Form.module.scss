@@ -23,7 +23,8 @@
   margin-top: 20px;
 
   &:hover {
-    background-color: rgb(22, 52, 55);;
+    background-color: rgb(22, 52, 55);
+    ;
     transition: background-color 0.5s ease-in-out;
   }
 }
@@ -49,10 +50,20 @@
   background-color: #f9fafb;
   border: none;
   border-radius: 10px;
+  color: #000000;
 
   padding: 20px;
 
   width: 100%;
   appearance: none;
   transition: all 0.15s;
+}
+
+.informationError {
+  color: red;
+  display: block;
+}
+
+.submitText {
+  text-align: center;
 }
