@@ -9,12 +9,16 @@
     "allowJs": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     "noEmit": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "isolatedModules": true,
 
     /* Linting */
     "strict": true,
@@ -24,5 +28,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["src", "global.d.ts"],
+  "exclude": ["node_modules"]
 }

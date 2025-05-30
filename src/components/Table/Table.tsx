@@ -50,7 +50,7 @@ const Table = () => {
   }
   return (
     <FormProvider {...methods}>
-      <div className={styles.tableContainer}>
+      <div className={styles.tableContainer} data-testid="table-container">
         <div className={styles.header}>Users</div>
         <button className={styles.button} onClick={() => setIsOpen(true)}>
           Add new user
@@ -62,29 +62,32 @@ const Table = () => {
           loader={<h4>Загрузка...</h4>}
         >
           <table cellSpacing={0} className={styles.table}>
-            <tr className={styles.row}>
-              {columns.map((column, index) => {
+            <thead>
+              <tr className={styles.row}>
+                {columns.map((column, index) => {
+                  return (
+                    <th className={styles.tableTitle} key={index}>
+                      {column}
+                    </th>
+                  );
+                })}
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user) => {
                 return (
-                  <th className={styles.tableTitle} key={index}>
-                    {column}
-                  </th>
+                  <tr key={user.id} className={styles.row}>
+                    {columns.map((column, index) => {
+                      return (
+                        <td className={styles.cell} key={index}>
+                          {user[column]}
+                        </td>
+                      );
+                    })}
+                  </tr>
                 );
               })}
-            </tr>
-
-            {users.map((user) => {
-              return (
-                <tr key={user.id} className={styles.row}>
-                  {columns.map((column, index) => {
-                    return (
-                      <td className={styles.cell} key={index}>
-                        {user[column]}
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
+            </tbody>
           </table>
         </InfiniteScroll>
         {isOpen && document.getElementById('portal')

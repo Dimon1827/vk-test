@@ -39,7 +39,11 @@ const Form = ({ isOpen, onClose }: IPropsForm) => {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className={styles.form}
+      onSubmit={handleSubmit(onSubmit)}
+      data-testid="form"
+    >
       <h1 className={styles.title}>Добавление пользователя</h1>
       {columns.map((column, index) => {
         return (
@@ -99,7 +103,9 @@ const Form = ({ isOpen, onClose }: IPropsForm) => {
         Закрыть
       </button>
       {isDataSubmit && (
-        <p className={styles.submitText}>Данные успешно отправлены</p>
+        <p className={styles.submitText} data-testid="submitText">
+          Данные успешно отправлены
+        </p>
       )}
     </form>
   );
