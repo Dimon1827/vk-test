@@ -3,6 +3,8 @@ import columns from '../../data/columns';
 import { useFormContext } from 'react-hook-form';
 import validFormInformation from './validFormInformation';
 import { useState } from 'react';
+import axios, { AxiosError } from 'axios';
+import type { IUser } from '../../types';
 interface IPropsForm {
   isOpen: boolean;
   onClose: () => void;
@@ -13,16 +15,28 @@ const Form = ({ isOpen, onClose }: IPropsForm) => {
     formState: { errors },
     register,
     handleSubmit,
-  } = useFormContext();
+  } = useFormContext<IUser>();
 
   const [isDataSubmit, setIsDataSubmit] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   if (!isOpen) return null;
 
+  const onSubmit = (data: IUser) => {
+    setIsDataSubmit(false);
+    setIsButtonDisabled(true);
 
-  const onSubmit = () => {
-    setIsDataSubmit(true);
-  } 
+    try {
+      axios.post('http://localhost:3000/users', data);
+    } catch (err) {
+      console.log(err as AxiosError);
+    } finally {
+      setTimeout(() => {
+        setIsButtonDisabled(false);
+        setIsDataSubmit(true);
+      }, 1000);
+    }
+  };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -74,8 +88,12 @@ const Form = ({ isOpen, onClose }: IPropsForm) => {
           </fieldset>
         );
       })}
-      <button type="submit" className={styles.button}>
-        Отправить
+      <button
+        type="submit"
+        disabled={isButtonDisabled}
+        className={styles.button}
+      >
+        {isButtonDisabled ? 'Отправляется' : 'Отправить'}
       </button>
       <button className={styles.button} onClick={onClose}>
         Закрыть
